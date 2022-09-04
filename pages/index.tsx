@@ -3,7 +3,9 @@ import Head from 'next/head'
 import Header from './components/Header'
 import Banner from './components/Banner'
 import SmallCard from './components/SmallCard'
+import LargeCard from './components/LargeCard'
 import MediumCard from './components/MediumCard'
+import Footer from './components/Footer'
 // const Home: NextPage = () => {
 const Home = ({exploreData, cardsData}) =>{
   return (
@@ -26,11 +28,22 @@ const Home = ({exploreData, cardsData}) =>{
         </section>
         <section> 
           <h2 className='text-4xl font-semibold py-8'> Live Anywhere</h2>
-          <div className='flex space-x-3 overflow-scroll scrollbar-hide'> 
-            {cardsData?.map(item => <MediumCard key={item.img} img={item.img} title={item.title}/>)}
+          <div className='flex space-x-3 overflow-scroll scrollbar-hide p-3 -m-3'> 
+            {cardsData?.map(item => <MediumCard 
+              key={item.img} 
+              img={item.img} 
+              title={item.title}
+            />)}
           </div>
         </section>
+        <LargeCard 
+          img='https://links.papareact.com/4cj'
+          title = 'The Greatest Outdoors'
+          description = 'Wishlists curated by Airbnb'
+          buttonText = 'Get Inspired'
+        />
       </main>
+      <Footer />
     </div>
   )
 }
@@ -40,7 +53,6 @@ export async function getStaticProps(){
     const result = await exploreData.json();
     const cardsDataRequest = await fetch('https://links.papareact.com/zp1');
     const cardsData = await cardsDataRequest.json();
-    console.log(cardsData); 
     return ({props : {exploreData : result, cardsData : cardsData}});
   }
   catch(err){
