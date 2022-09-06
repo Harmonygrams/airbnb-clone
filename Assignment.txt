@@ -1,0 +1,2 @@
+1. Since the search filters are hidden in the mobile view, make them 
+appear when a hamburger menu is clicked. 
